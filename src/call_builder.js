@@ -5,7 +5,7 @@ let URI = require("urijs");
 let URITemplate = require("urijs/src/URITemplate");
 
 let axios = require("axios");
-var EventSource = (typeof window === 'undefined') ? require('eventsource') : window.EventSource;
+var EventSource = (typeof document === 'undefined') ? ((typeof navigator !== 'undefined' && navigator.product === 'ReactNative') ? require('react-native-event-source') : require('eventsource')) : window.EventSource;
 
 /**
  * Creates a new {@link CallBuilder} pointed to server defined by serverUrl.
@@ -33,7 +33,7 @@ export class CallBuilder {
       //append filters to original segments
       let newSegment = this.originalSegments.concat(this.filter[0]);
       this.url.segment(newSegment);
-    }        
+    }
   }
 
   /**
@@ -131,7 +131,7 @@ export class CallBuilder {
 
       return this._sendNormalRequest(uri).then(r => this._parseResponse(r));
     };
-  } 
+  }
 
   /**
    * Convert each link into a function on the response object.
@@ -150,7 +150,7 @@ export class CallBuilder {
     });
     return json;
   }
-  
+
   _sendNormalRequest(url) {
     if (url.authority() === '') {
       url = url.authority(this.url.authority());
