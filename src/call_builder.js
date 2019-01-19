@@ -1,11 +1,12 @@
 import {NotFoundError, NetworkError, BadRequestError} from "./errors";
 import forEach from 'lodash/forEach';
+import eventsource from 'eventsource';
 
 let URI = require("urijs");
 let URITemplate = require("urijs/src/URITemplate");
 
 let axios = require("axios");
-var EventSource = (typeof document === 'undefined') ? require('eventsource') : window.EventSource;
+var EventSource = (typeof document === 'undefined') ? eventsource : window.EventSource;
 
 /**
  * Creates a new {@link CallBuilder} pointed to server defined by serverUrl.
