@@ -7,9 +7,11 @@ import HorizonAxiosClient from './horizon_axios_client';
 import { version } from '../package.json';
 import { NotFoundError, NetworkError, BadRequestError } from './errors';
 
-let EventSource;
+let EventSource,
+  isReactNative =
+    typeof navigator != 'undefined' && navigator.product == 'ReactNative';
 
-if (isNode) {
+if (isNode || isReactNative) {
   // eslint-disable-next-line
   EventSource = require('eventsource');
 } else {
