@@ -1,12 +1,13 @@
 module.exports = function(config) {
   config.set({
     frameworks: ['mocha', 'chai-as-promised', 'chai', 'sinon'],
-    browsers : ["Firefox"],
+    browsers: ['Firefox'],
 
     files: [
       'dist/stellar-sdk.js',
       'test/test-helper.js',
-      'test/unit/**/*.js'
+      'test/unit/**/*.js',
+      'test/integration/server_test.js'
     ],
 
     preprocessors: {
@@ -16,7 +17,8 @@ module.exports = function(config) {
     webpack: {
       module: {
         loaders: [
-          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'}
+          { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+          { test: /\.json$/, loader: 'json-loader' }
         ]
       }
     },
