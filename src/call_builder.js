@@ -8,12 +8,8 @@ import { version } from '../package.json';
 import { NotFoundError, NetworkError, BadRequestError } from './errors';
 
 let EventSource;
-const isReactNative =
-  global.window &&
-  typeof global.window.navigator !== 'undefined' &&
-  global.window.navigator.product === 'ReactNative';
 
-if (isNode || isReactNative) {
+if (isNode || typeof document === 'undefined') {
   // eslint-disable-next-line
   EventSource = require('eventsource');
 } else {
