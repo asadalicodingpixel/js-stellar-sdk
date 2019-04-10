@@ -7,9 +7,11 @@ import HorizonAxiosClient from './horizon_axios_client';
 import { version } from '../package.json';
 import { NotFoundError, NetworkError, BadRequestError } from './errors';
 
-let EventSource,
-  isReactNative =
-    typeof navigator != 'undefined' && navigator.product == 'ReactNative';
+let EventSource;
+const isReactNative =
+  global.window &&
+  typeof global.window.navigator !== 'undefined' &&
+  global.window.navigator.product === 'ReactNative';
 
 if (isNode || isReactNative) {
   // eslint-disable-next-line
