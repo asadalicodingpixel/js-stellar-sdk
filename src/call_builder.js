@@ -2,16 +2,18 @@ import forEach from 'lodash/forEach';
 import URI from 'urijs';
 import URITemplate from 'urijs/src/URITemplate';
 import isNode from 'detect-node';
+import eventsource from 'eventsource';
 
 import HorizonAxiosClient from './horizon_axios_client';
 import { version } from '../package.json';
 import { NotFoundError, NetworkError, BadRequestError } from './errors';
 
 let EventSource;
+console.log(typeof document === 'undefined');
 
 if (isNode || typeof document === 'undefined') {
   // eslint-disable-next-line
-  EventSource = require('eventsource');
+  EventSource = eventsource;
 } else {
   // eslint-disable-next-line
   EventSource = window.EventSource;
