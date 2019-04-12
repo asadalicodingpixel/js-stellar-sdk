@@ -9,7 +9,6 @@ import { version } from '../package.json';
 import { NotFoundError, NetworkError, BadRequestError } from './errors';
 
 let EventSource;
-console.log(typeof document === 'undefined');
 
 if (isNode || typeof document === 'undefined') {
   // eslint-disable-next-line
